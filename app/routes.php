@@ -12,3 +12,16 @@
 */
 
 Route::get('/','loginController@inicio');
+Route::get('/logout','loginController@logout');
+Route::get("/productos",'productoController@show');
+Route::get("/categorias",'categoriaController@show');
+Route::post("/producto-get","productoController@get");
+Route::group(["before"=>"auth"],function(){
+	Route::post("/producto-upload","productoController@upload");
+	Route::post("/categoria-upload","categoriaController@upload");
+	Route::post("/producto-changeImage","productoController@changeImage");
+	Route::post("/addSection",'carouselController@addSeccion');
+});
+Route::group(["before"=>"guest"],function(){
+	Route::match(["POST","GET"],'/login','loginController@login');
+});

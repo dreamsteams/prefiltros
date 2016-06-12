@@ -11,7 +11,30 @@ $(function(){
     /*  Menu item highlighting
     /* ========================================================================= */
 
-    
+    $noty={
+        show:function(type,text,sound,soundSucces){
+             switch(type){
+                case "success": 
+                    Notifier.success(text,"Prefiltros: ");
+                break;
+                case "error": 
+                    Notifier.error(text,"Prefiltros: ");
+                break;
+                case "info": 
+                    Notifier.info(text,"Prefiltros: ");
+                break;
+                case "warning": 
+                    Notifier.warning(text,"Prefiltros: ");
+                break;
+             }
+             if(sound){
+                if(soundSucces)
+                    document.getElementById('noty-success').play();
+                else
+                    document.getElementById('noty-error').play();
+             }
+        }
+    }
     $('#nav').onePageNav({
         filter: ':not(.external)',
         scrollSpeed: 950,
@@ -53,3 +76,30 @@ $(function(){
     });
     wow.init();
 });
+ $(window).scroll(function () {
+        if ($(window).scrollTop() > 30) {
+  //          $(".navbar").css("unique-color");/*00C7FC*/
+            $(".navbar").addClass("animated-nav");
+            $(".dropdown-menu").removeClass("custom-nav");
+        } else {
+            $(".dropdown-menu").addClass("custom-nav");
+    //        $(".navbar").css("background","rgba(63, 114, 155, 0.38)!important");
+            $(".navbar").removeClass("animated-nav");
+        }
+    });
+
+    $(".fancybox").fancybox({
+        padding: 0,
+
+        openEffect : 'elastic',
+        openSpeed  : 650,
+
+        closeEffect : 'elastic',
+        closeSpeed  : 550,
+    });
+    $(".colors").click(function(){
+        $(".colors").removeClass("active");
+        $(this).addClass("active");
+        $(this).parent().parent().parent().attr("data-color",$(this).data("color"));
+       
+    });

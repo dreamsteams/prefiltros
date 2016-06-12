@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::guest('/');
 		}
 	}
 });
@@ -69,6 +69,7 @@ Route::filter('guest', function()
 {
 	if (Auth::check()) return Redirect::to('/');
 });
+
 
 /*
 |--------------------------------------------------------------------------

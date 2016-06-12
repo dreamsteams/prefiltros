@@ -1,0 +1,10 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/xampp/htdocs/prefiltros/vendor/filp/whoops/src/Whoops/Resources/js/zepto.min.js",
+        "C:/xampp/htdocs/prefiltros/vendor/filp/whoops/src/Whoops/Resources/js/whoops.base.js",
+        "C:/xampp/htdocs/prefiltros/public/packages/js/libs/sweetalert/sweetalert.min.js",
+        "C:/xampp/htdocs/prefiltros/public/packages/js/prefiltros/inicio.js",
+        "C:/xampp/htdocs/prefiltros/public/packages/js/libs/sweetalert/sweetalert-dev.js",
+        "C:/xampp/htdocs/prefiltros/public/packages/js/libs/slide/sliderControl.js"
+    ]
+}
