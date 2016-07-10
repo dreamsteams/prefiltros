@@ -9,7 +9,7 @@
      <li class="dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
         <ul class="dropdown-menu custom-nav" role="menu">
-            <li><a href="javascript:void(0)">Catalogo de productos</a></li>
+            <li><a href="/productos">Catalogo de productos</a></li>
         </ul>
     </li>
    <li id="nav-inicio"  class=""><a href="/" class=""><i class="fa fa-home"></i> Inicio</a></li>
@@ -50,7 +50,7 @@
 				        		</div>
 				        		<div class="col-md-2"></div>
 					        </div>
-					        <div class="row">
+					        <!--<div class="row">
 					        	<div class="col-md-1"></div>
 					        	<div class="col-md-4">
 					        		 <input type="checkbox" id="remember" name="remember"/>
@@ -59,7 +59,7 @@
 					        	<div class="col-md-7" style="padding-top:7%!important;padding-left:6%!important;">
 					        		<b style=""><a href="#">¡Olvide mi contraseña!</a></b>
 					        	</div>
-					        </div>
+					        </div>-->
 						</form>
 					</div>
 				</div>

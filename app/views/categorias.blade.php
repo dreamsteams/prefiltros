@@ -16,151 +16,104 @@ catálogo | Categorías
 <h3>Categorías <small>Categorías de productos</small></h3>
 @stop
 @section('main-container') 
+<form id="frm-update-image">
+<input type="file" name="changeImage" id="changeImage" class="hidden" accept="image/jpg,image/jpeg,image/png,image/gif">
+</form>
 <section id="categorias">
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="pagination">
-				<li><a href = "#" data-toggle="tooltip" data-placement="bottom" title="Anterior">&laquo;</a></li>
-				<li><a href="#">1</a></li>
-				<li class="active"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li class=""><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
-				<li><a href="#">11</a></li>
-				<li class=""><a href="#">2</a></li>
-				<li><a href="#">12</a></li>
-				<li><a href="#">13</a></li>
-				<li><a href="#">14</a></li>
-				<li><a href = "#" data-toggle="tooltip" data-placement="bottom" title="Siguiente">&raquo;</a></li>
+				<li class="disabled prev"><a href = "#" data-toggle="tooltip" data-placement="bottom" title="Anterior">&laquo;</a></li>
+				     <?php $contador=1; $n=1; $categorias = categoria::where("active","1")->get();?>
+			          @foreach($categorias as $categoria)
+			            @if($contador==1)
+			              @if($n==1)
+			                @if(Auth::check())
+			                  <?php $contador++;?>
+			                @endif
+			              <li class="active"><a href="#page-{{$n}}">{{$n}}</a></li>
+			              @else
+			              <li class=""><a href="#page-{{$n}}">{{$n}}</a></li>
+			              @endif
+			            <?php $n++;?>
+			            @endif
+			            @if($contador==12)
+			            <?php $contador=0;?>
+			            @endif
+			            <?php $contador++;?> 
+			          @endforeach
+				<li class="next"><a href = "#" data-toggle="tooltip" data-placement="bottom" title="Siguiente">&raquo;</a></li>
 			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="card card-dark card-new" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva Categoría">
-				<h1 class="text-center"><i class="fa fa-plus-circle"></i></h1>
-				<h4 class="text-center">Nueva categoría</h4>
-			</div>
-		</div>
-	 	<div class="col-sm-3">
- 			<!--Card-->
-			<div class="card">
-
-			    <!--Card image-->
-			    <div class="view overlay hm-white-slight">
-			        <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-fluid" alt="">
-			        <a href="#">
-			            <div class="mask">
-			            	<div class="row">
-			            		<div class="col-md-12">
-	            					<h5 class="text-left">
-		            					<a data-toggle="tooltip" data-placement="bottom" title="Ver producto"      class="btn btn-yt btn-floating btn-like"><i class="fa fa-search"></i></a>
-		            					@if(Auth::check())
-		            					<a data-toggle="tooltip" data-placement="bottom" title="Ver producto"      class="btn btn-yt btn-floating btn-like"><i class="fa fa-image"></i></a>
-		            					<a data-toggle="tooltip" data-placement="bottom" title="Ver producto"      class="btn btn-yt btn-floating btn-like"><i class="fa fa-refresh"></i></a>
-		            					@endif
-			            			</h5>
-			            		</div>
-			            	</div>
-			            </div>
-			        </a>
-			    </div>
-			    <!--/.Card image-->
-
-			    <!--Card content-->
-			    <div class="card-block">
-			        <!--Title-->
-			        <h4 class="card-title text-center">
-			        	<p>Card title</p>
-			        	@if(!Auth::check())
-			        	<a href="#" class="btn btn-info"><i class="fa fa-car"></i> Agregar al carrito</a>
-			        	@endif
-			        </h4>
-			        <!--Text-->
-			    </div>
-			    <!--/.Card content-->
-
-			</div>
-			<!--/.Card-->
-	 	</div>
-	 	<div class="col-sm-3">
- 			<!--Card-->
-			<div class="card">
-
-			    <!--Card image-->
-			    <div class="view overlay hm-white-slight">
-			        <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-fluid" alt="">
-			        <a href="#">
-			            <div class="mask"></div>
-			        </a>
-			    </div>
-			    <!--/.Card image-->
-
-			    <!--Card content-->
-			    <div class="card-block">
-			        <!--Title-->
-			        <h4 class="card-title text-center">Card title</h4>
-			        <!--Text-->
-			    </div>
-			    <!--/.Card content-->
-
-			</div>	
-			<!--/.Card-->
-	 	</div>
-	 	<div class="col-sm-3">
- 			<!--Card-->
-			<div class="card">
-
-			    <!--Card image-->
-			    <div class="view overlay hm-white-slight">
-			        <img src="http://mdbootstrap.com/images/reg/reg%20(2).jpg" class="img-fluid" alt="">
-			        <a href="#">
-			            <div class="mask"></div>
-			        </a>
-			    </div>
-			    <!--/.Card image-->
-
-			    <!--Card content-->
-			    <div class="card-block">
-			        <!--Title-->
-			        <h4 class="card-title text-center">Card title</h4>
-			        <!--Text-->
-			    </div>
-			    <!--/.Card content-->
-
-			</div>
-			<!--/.Card-->
-	 	</div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<ul class="pagination">
-				<li><a href = "#" data-toggle="tooltip" data-placement="bottom" title="Anterior">&laquo;</a></li>
-				<li><a href="#">1</a></li>
-				<li class="active"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li class=""><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
-				<li><a href="#">11</a></li>
-				<li class=""><a href="#">2</a></li>
-				<li><a href="#">12</a></li>
-				<li><a href="#">13</a></li>
-				<li><a href="#">14</a></li>
-				<li><a href = "#" data-toggle="tooltip" data-placement="bottom" title="Siguiente">&raquo;</a></li>
-			</ul>
-		</div>
+	<div id="content-categorias">
+	<?php $contador_page=0;$contador_row=1;$n=1;?>
+    @foreach($categorias as $categoria)
+      @if($contador_page==0)
+        @if($n==1)
+        <div id="page-{{$n}}" class="active">
+        @else
+        <div id="page-{{$n}}" class="">
+        @endif
+        <?php $n++;$contador_page=1 ?>
+      @endif
+      @if($contador_row==1)
+      <div class="row row-main-categorias">
+      @endif
+        @if(Auth::user())
+          @if($categorias[0]->id ==$categoria->id)
+          <div class="col-md-3">
+            <div class="card card-dark card-new" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo producto">
+              <h1 class="text-center"><i class="fa fa-plus-circle"></i></h1>
+              <h4 class="text-center">Nueva Categoría</h4>
+            </div>
+          </div>
+          <?php $contador_row++;?>
+          @endif
+        @endif
+  		<div class="col-md-3">
+  			<div class="card" data-card-id="{{$categoria->id}}" data-titulo="{{$categoria->titulo}}">
+  				<div class="view overlay hm-white-slight">
+  					<img src="/packages/images/categorias/{{$categoria->imagen}}" data-id="{{$categoria->id}}" class="img-fluid" style="width:100%!important;;height:160px!important;">
+  					<a>
+  						<div class="mask">
+  							<div class="row">
+  								<div class="col-md-12">
+  									<h5 class="text-center">
+  										<a data-tool="tooltip" href="/productos-categoria/{{$categoria->id}}" class="btn btn-yt btn-floating btn-search" title="ver productos de la categoría"><i class="fa fa-search"></i></a>
+  										@if(Auth::check())
+  										<a data-tool="tooltip" data-id="{{$categoria->id}}" class="btn btn-yt btn-floating change-image" title="Cambiar imagen de la categoría"><i class="fa fa-image"></i></a>
+  										<a data-tool="tooltip" data-id="{{$categoria->id}}" class="btn btn-yt btn-floating btn-refresh" title="Modificar producto"><i class="fa fa-refresh"></i></a>
+  										<a data-tool="tooltip" data-id="{{$categoria->id}}" class="btn btn-yt btn-floating btn-trash" title="Eliminar producto"><i class="fa fa-trash"></i></a>
+  										@endif
+  									</h5>
+  								</div>
+  							</div>
+  						</div>
+  					</a>
+  				</div><div class="card-block"><div class="card-title text-center"><p>{{$categoria->titulo}}</p></div></div></div></div>
+      @if($contador_row==4)
+      </div>
+      <?php $contador_row=0;$contador_page++;?>
+      @endif
+      @if($contador_page==4)
+      </div>
+      <?php $contador_page=0;?>
+      @endif
+      <?php $contador_row++;?>
+    @endforeach
 	</div>
 </section>
+<div class="row row-pager">
+<div class="col-md-12">
+  <nav>
+    <ul class="pager">
+      <li class="disabled prev previous"><a href="#">&larr; Anterior</a></li>
+      <li class="next"><a href="#">Siguiente &rarr;</a></li>
+    </ul>
+  </nav>
+</div>
+</div>
 @if(Auth::check())
 <div class="row" id="admin-categorias" hidden="hidden">
  <div class="col-md-12">
@@ -191,6 +144,7 @@ catálogo | Categorías
         <i class="fa fa-check"></i>
         Guardar
       </button>
+      <input type="number" name="id" id="id" class="hidden">
     </form>
     </div>
   </div> 

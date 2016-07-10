@@ -58,3 +58,9 @@
 .btn-remove-image:hover{
 	background-color: #CC0000!important;
 }
+div[id*="page"]{
+	display: none;
+}
+div[id*="page"].active{
+	display: block;
+}

@@ -1,0 +1,117 @@
+#content-products>.row{
+	margin-top: 2.5%!important;
+	margin-bottom: 3%!important;
+}
+.box-product{
+	padding: 1%;
+	width: 100%;
+    min-height: 200px;
+    border-left:10px solid #3F729B;
+    border-right:6px solid #3F729B;
+    border-radius: 15px;
+    background-color: #fff;
+    margin-top: 2%;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1); 
+}
+.card-producto{
+	box-shadow: none!important;
+}
+#frm-cotizacion label{
+    color: #343434;
+}
+label.error{
+    color: #cc0000!important;
+}
+textarea[name='mensaje']{
+    max-width: 470px;
+}
+.img-carrito{
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    width: 100px;
+    height: 100px;
+}
+.btn-right button {
+    border-radius: 0px 25px 25px 0px!important;
+    border: 1px solid rgba(221,226,232,0.49)!important;
+    border-left: 0!important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075)!important;
+    color: #93A2B2!important;
+    margin-bottom: 0 !important;
+}
+.btn-left button {
+    border-radius: 25px 0px 0px 25px!important;
+    border: 1px solid rgba(221,226,232,0.49)!important;
+    border-left: 0!important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075)!important;
+    color: #93A2B2!important;
+    margin-bottom: 0 !important;
+}
+
+.striped-btn {
+     -webkit-background-size: 30px 30px!important;
+   -moz-background-size: 30px 30px!important;
+   background-size: 30px 30px!important;
+   background-image: -webkit-gradient(linear, left top, right bottom,
+   color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent),
+   color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
+   color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent),
+   to(transparent))!important;
+   background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent)!important;
+   background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent)!important;
+   background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent)!important;
+   background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent)!important;
+   background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent)!important;
+-webkit-animation: animate-stripes 3s linear infinite;
+   -moz-animation: animate-stripes 3s linear infinite;
+
+}
+.striped{
+   -webkit-background-size: 30px 30px;
+   -moz-background-size: 30px 30px;
+   background-size: 30px 30px;
+   background-image: -webkit-gradient(linear, left top, right bottom,
+   color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent),
+   color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
+   color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent),
+   to(transparent));
+   background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent);
+   background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent);
+   background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent);
+   background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent);
+   background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+   transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+   transparent 75%, transparent);
+}
+
+@-webkit-keyframes animate-stripes {
+   0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+@-moz-keyframes aimate-stripes {
+   0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+@keyframes in-progress
+{
+    from{width: 0%}
+    to{width: 100%}
+}

@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' =>  array('address' => "utt.sistemas@gmail.com", 'name' => "Prefiltros"),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => "utt.sistemas@gmail.com",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => "utt515t3ma5",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -120,5 +120,7 @@ return array(
 	*/
 
 	'pretend' => false,
+
+
 
 );

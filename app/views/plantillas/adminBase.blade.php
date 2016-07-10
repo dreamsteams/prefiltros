@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <link rel="icon" type="image/png" href="/packages/images/marcas/Protec.png">
     <title>@yield('title') </title>
 
     <!-- Bootstrap -->
@@ -18,7 +18,10 @@
     <!-- / end material design for bootstrap -->
     <!-- Font Awesome -->
     {{HTML::style('/packages/css/libs/awensome/css/font-awesome.min.css')}}
+    {{HTML::style('/packages/css/libs/sweetalert/sweetalert.css')}}
     <!-- FullCalendar -->
+    {{HTML::style('/packages/css/libs/tooltipster/tooltipster.css')}}
+
     {{HTML::style('/packages/css/prefiltros/custom.css')}}
     {{HTML::style('packages/css/libs/bootstrap/fileinput.css')}}
     <!-- Admin base css -->
@@ -45,22 +48,21 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="/"><i class="fa fa-home"></i> Inicio </a></li>
-                  <li class=" li-productos"><a href="/productos"><i class="fa fa-tags"></i> Productos </a></li>
-                  @if(Auth::check())
-                   <li class=" li-categorias"><a href="/categorias"><i class="fa fa-puzzle-piece"></i> Categorías</a></li> 
-                  @else
-                  <li><a><i class="fa fa-shopping-cart"></i> My carrito </a></li>
+                  <!--<li><a href="/"><i class="fa fa-home"></i> Inicio </a></li>-->
+                  <li class="li-productos"><a href="/productos"><i class="fa fa-tags"></i> Productos </a></li>
+                  <li class="li-categorias"><a href="/categorias"><i class="fa fa-puzzle-piece"></i>Ver Categorías</a></li> 
+                  @if(!Auth::check())
+                  <li><a href="/carrito"><i class="fa fa-shopping-cart"></i> My carrito <span class="badge bg-green txt-carrito-count">0</span></a></li>
                   @endif
+                  <li><a><i class="fa fa-cubes"></i> Categorías <span class="fa fa-angle-down"></span></a>
+                    <ul class="nav child_menu" style="display: none">
+                     @foreach(categoria::where("active",1)->get() as $categoria)
+                     <li><a href="/productos-categoria/{{$categoria->id}}"><i class="fa fa-cube"></i>{{$categoria->titulo}}</a></li>
+                     @endforeach
+                    </ul>
+                  </li>
                 </ul>
               </div>
-              <div class="menu_section">
-                <h3>Categorías</h3>
-                <ul class="nav side-menu">                  
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-                </ul>
-              </div>
-
             </div>
             <!-- /sidebar menu -->
 
@@ -70,10 +72,10 @@
               <a href="/" data-toggle="tooltip" data-placement="top" title="Inicio">
                 <span class="fa fa-home" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Pantalla completa">
+              <a id="btn-screen-full" data-toggle="tooltip" data-placement="top" title="Pantalla completa">
                 <span class="fa fa-desktop" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Salir">
+              <a href="/logout" data-toggle="tooltip" data-placement="top" title="Salir">
                 <span class="fa fa-sign-out" aria-hidden="true"></span>
               </a>
             </div>
@@ -82,7 +84,7 @@
         </div>
 
         <!-- top navigation -->
-        <div class="top_nav">
+        <div class="top_nav navbar-fixed-top">
           <div class="nav_menu">
             <nav class="" role="navigation">
               <div class="nav toggle">
@@ -100,11 +102,12 @@
                     @if(Auth::check())
                     <li><a href="/logout"><i class="fa fa-sign-out pull-left"></i> Salir</a></li>
                     @else
-                    <li><a href="/login"><i class="fa fa-sign"></i> Iniciar session</a></li>
+                    <li><a href="/carrito"><i class="fa fa-shopping-cart"></i> Mi carrito</a></li>
+                    <li><a href="/login"><i class="fa fa-sign-in"></i> Iniciar session</a></li>
                     @endif
                   </ul>
                 </li>
-
+                @if(Auth::check())
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -133,6 +136,7 @@
                     </li>
                   </ul>
                 </li>
+                @endif
               </ul>
             </nav>
           </div>
@@ -140,8 +144,8 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="container">
+        <div class="right_col" role="main" style="">
+          <div class="container" style="margin-top:5%!important;">
             <div class="row">
               <div class="col-md-11">
                 <ol class="breadcrumb">
@@ -156,12 +160,14 @@
               </div>
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <form id="frm-buscar" method="POST">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Buscar...">
+                    <input type="text" name="busqueda" class="form-control" placeholder="Buscar...">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                      <button type="submit" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                     </span>
                   </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -203,13 +209,25 @@
     {{HTML::script('/packages/js/libs/validation/jquery.validate.min.js')}}
     {{HTML::script('/packages/js/libs/validation/additional-methods.min.js')}}
     {{HTML::script('/packages/js/libs/validation/localization/messages_es.js')}}
-    <!-- FastClick -->
-    {{HTML::script('/packages/js/prefiltros/fastclick.js')}}
+    {{HTML::script('/packages/js/libs/sweetalert/sweetalert.min.js')}}
     <!-- NProgress -->
     {{HTML::script('/packages/js/prefiltros/nprogress.js')}}
     {{HTML::script('/packages/js/libs/bootstrap/fileinput.js')}}
     <!-- Custom Theme Scripts -->
-    {{HTML::script('/packages/js/prefiltros/custom.min.js')}}
     @yield('js')
+    <script type="text/javascript">
+      $("#frm-buscar").submit(function(e){
+        e.preventDefault();
+        document.location="/productos/"+$("input[name='busqueda']").val();
+
+      });
+      $("#btn-screen-full").click(function(){
+        $("a#menu_toggle").trigger("click");
+      });
+    </script>
+    <!-- FastClick -->
+    {{HTML::script('/packages/js/prefiltros/custom.min.js')}}
+    {{HTML::script('/packages/js/libs/tooltipster/jquery.tooltipster.min.js')}}
+    {{HTML::script('/packages/js/prefiltros/fastclick.js')}}
   </body>
 </html>

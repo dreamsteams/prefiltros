@@ -1,0 +1,121 @@
+	<div class="section-title text-center wow fadeInDown">
+	    <h2>Categorías de productos</h2>    
+	    <p>Aquí te mostramos nuestra galería, en donde podemos representarte un poco nuestra familia. <i class="fa fa-paw"></i></p>
+	</div>       
+    <nav class="project-filter clearfix text-center wow fadeInLeft"  data-wow-delay="0.5s">
+        <ul class="list-inline">
+        	<li><a href="javascript:;" class="filter" data-filter="all">Galería</a></li>
+            <li><a href="javascript:;" class="filter" data-filter=".nosotros">Nosotros</a></li>
+            <li><a href="javascript:;" class="filter" data-filter=".paseos">Paseos</a></li>
+            <li><a href="javascript:;" class="filter" data-filter=".estetica">Estética</a></li>
+        </ul>
+    </nav>
+    <div id="projects" class="clearfix">
+    	<figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/abrazaderas.jpg','Imágen de categoría',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos6.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus fa fa-plus"></span></a>
+            <figcaption class="mask">
+                <h3>Abrazaderas</h3>
+            </figcaption>
+        </figure>
+		<figure class="mix portfolio-item nosotros">
+    		{{HTML::Image('/packages/images/productos/cople3.jpg','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/nosotros1.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Coples</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/prefiltro.gif','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos9.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Prefiltros</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/prelimpiador.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos4.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Prelimpiadores</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/carcasas.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos10.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Carcazas</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/aquacheck.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos2.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>aquacheck</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/carcasas-desechables.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos7.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Carcazas Desechables</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/filtros-equipo_pesado.jpg','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos8.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Filtros Automotriz<br> y Equipo Pesado</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item nosotros">
+    		{{HTML::Image('/packages/images/productos/indicadores.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/nosotros2.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Indicadores de <br>restricción</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/power.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/power.png" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Power Core &amp; G2</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/prefiltro_turbo.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos5.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Prefiltros Turbo</h3>
+            </figcaption>
+        </figure>
+    	<figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/separadores.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos1.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Separadores<br> Aire / Aceite</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/tapas.jpg','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos12.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Tapas de Lluvia</h3>
+            </figcaption>
+        </figure>
+        <figure class="mix portfolio-item paseos">
+    		{{HTML::Image('/packages/images/productos/valvula.png','Imágen del portafolio',array('class'=>'img-responsive'))}}
+            <a href="/assets/Imagenes/Home/portafolio/paseos11.jpg" title="Título de la imagen" rel="portfolio" class="fancybox"><span class="plus"></span></a>
+            <figcaption class="mask">
+                <h3>Valvulas de <br>Evacuadoras de <br>Polvo</h3>
+            </figcaption>
+        </figure>
+	</div>
+	<div class="row visible-lg visible-md" style="padding-top:15%!important;">
+      <div class="col-md-8"></div>
+      <div class="col-md-3"></div>
+      <div class="col-md-1">
+        <div class="colors active colors-blue"></div>          
+        <div class="colors colors-gray"></div>          
+        <div class="colors colors-brown"></div>          
+      </div>
+  </div>

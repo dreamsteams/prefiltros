@@ -34,17 +34,17 @@
               <div class="modal-body">
                 <form action="/addSection" method="POST" id="frm-section" class="form-horizontal">
                      <div class="row">
-                       <div class="input-field col-md-12">
+                       <div class="input-group col-md-12">
                           <i class="material-icons prefix"><i class="fa fa-text-width"></i></i>
+                          <label for="titulo">titulo de la sección</label>
                           <input type="text" name="titulo"  id="titulo"  class="validate">
-                          <label for="titulo">Ingrese el titulo de la sección</label>
                         </div>      
                       </div>      
                       <div class="row">
-                        <div class="input-field col-md-12">
+                        <div class="input-group col-md-12">
                             <i class="material-icons prefix"><i class="fa fa-pencil-square-o"></i></i>
-                            <textarea name="descripcion" id="descripcion" class="materialize-textarea validate"></textarea>
                             <label for="descripcion">Ingrese la descripción de la sección</label>
+                            <textarea name="descripcion" id="descripcion" class="" cols="10" rows="10"></textarea>
                         </div>
                       </div>
                       <div class="row">
@@ -57,6 +57,7 @@
                             </label>
                           </div>
                           <div class="col-md-1"></div>
+                          <input type="number" name="id" id="id" class="hidden">
                       </div>
               </div>
               <div class="modal-footer">
@@ -76,43 +77,58 @@
       <div class="row btn-carousel-modific">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-ellipsis-v fa-x4"></i></a>
+            <a class="dropdown-toggle btn-floating btn-large blue" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
             <ul class="dropdown-menu custom-nav" role="menu">
-              <li data-toggle="modal" data-target="#modal-carousel" class=""><a href="#"><i style="font-size:1.7em;color:#20da59;" class="fa fa-plus"></i> Agregar sección</a></li>
-              <li class=""><a href="#"><i style="font-size:1.7em;color:#0cdece!important;" class="fa fa-refresh"></i> Modificar sección</a></li>
-              <li class=""><a href="#"><i style="font-size:1.7em; color:red;" class="fa fa-trash"></i> Eliminar sección</a></li>
-            </ul>
+              <li data-toggle="modal" data-target="#modal-carousel" class="btn-upload"><a><i class="fa fa-plus"></i> Agregar sección</a></li>
+              <li data-toggle="modal" data-target="#modal-carousel" class="btn-refresh"><a><i style="color:#FF8800!important"  class="fa fa-refresh"></i> Modificar sección</a></li>
+              <li class="btn-delete"><a><i style="color:#cc0000!important" class="fa fa-trash"></i> Eliminar sección</a></li>
+            </ul> 
           </li>
         </ul>
       </div>
       @endif
       <ol class="carousel-indicators">
+        @if(carousel::where("active",1)->get()->first())
         <?php $contador=0;?>
-        @foreach(carousel::all() as $carousel)
-          @if($carousel->id==carousel::all()[0]->id)
+        @foreach(carousel::where("active",1)->get() as $carousel)
+          @if($carousel->id==carousel::where("active",1)->get()[0]->id)
           <li data-target="#home-carousel" data-slide-to="{{$contador}}" class="active"></li>
           @else
           <li data-target="#home-carousel" data-slide-to="{{$contador}}" class=""></li>
           @endif
           <?php $contador++; ?>
         @endforeach
+        @else
+        <li data-target="#home-carousel" data-slide-to="a" class="active"></li>
+        @endif
       </ol>
       <!--/.carousel-indicators-->
       <div class="carousel-inner">
-          @foreach(carousel::all() as $carousel)
-          @if($carousel->id==carousel::all()[0]->id)
+         @if(carousel::where("active",1)->get()->first())
+          @foreach(carousel::where("active",1)->get() as $carousel)
+          @if($carousel->id==carousel::where("active",1)->get()[0]->id)
           <div class="item active" data-id="{{$carousel->id}}" style="background-image: url('/packages/images/secciones/{{$carousel->imagen}}')" >
           @else
           <div class="item" data-id="{{$carousel->id}}"  style="background-image: url('/packages/images/secciones/{{$carousel->imagen}}')" >
           @endif  
               <div class="carousel-caption">
                   <div class="animated bounceInUp text-justify" id="caption1">
-                      <h2>{{$carousel->titulo}}</h2>
-                      <p style="font-size:1.3em!important">{{$carousel->descripcion}}></p>
+                      <h2 class="text-center">{{$carousel->titulo}}</h2>
+                      <p style="font-size:1.3em!important">{{$carousel->descripcion}}</p>
                   </div>
               </div>
           </div>              
           @endforeach
+          @else
+           <div class="item active item-out" style="background-image: url('/packages/images/fondo.jpg')">
+            <div class="carousel-caption">
+                  <div class="animated bounceInUp text-justify" id="caption1">
+                      <h2 class="text-center">Sin sección</h2>
+                      <p class="text-center" style="font-size:1.3em!important">No hay ningúna sección que mostrar :(</p>
+                  </div>
+              </div>
+          </div>
+          @endif
          <!-- <div class="item" style="background-image: url('/packages/images/secciones/2.jpg')">                
               <div class="carousel-caption">
                   <div class="animated bounceInRight" id="caption2">
@@ -146,6 +162,7 @@
 
   <div class="container-fluid" data-scroll-index="0" id="section-about">
   <div class="row">
+
       <div class="col-md-12">
         <div class="section-title text-center wow fadeInDown">
             <h2>¿ Quiénes Somos  <i class="fa fa-group"> </i> ?</h2>    
@@ -196,30 +213,29 @@ Contamos con una gran variedad de productos de las mejores marcas para sus neces
   <div class="row" style="min-width:100%!important; padding-left:10%!important;padding-right:10%!important;">
       <div class="col-md-12" style="">
           <div class="owl-carousel wow fadeInLeft" style="width:100%!important" data-wow-delay="0.2s" data-wow-duration="1s">
-            @foreach(producto::all() as $producto)
-           <div class="item card hoverable">
-                <div class="card-image">
-                    <div class="view overlay hm-white-slight z-depth-1">
-                        <img src="/packages/images/productos/{{$producto->imagen}}" class="img-responsive" alt="">
-                        <a href="javascript:void">
-                            <div class="mask waves-effect">
-                                <i title="Agregar al carrito" class="fa fa-car" data-tool="tooltip"></i>
-                                <i title="Ver producto" class="fa fa-home" data-tool="tooltip"></i>
-                            </div>
-                        </a>
+            @foreach(producto::where("active","=","1")->get() as $producto)
+            <div class="card card-producto item hoverable">
+              <div class="view overlay hm-white-slight">
+                <img class="img-fluid" src="/packages/images/productos/{{$producto->imagen}}"></img>
+                <a>
+                  <div class="mask">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h5 class="text-center">
+                          <a class="btn btn-yt btn-floating" title=""><i class="fa fa-search"></i></a>
+                        </h5>
+                      </div>
                     </div>
+                  </div>
+                </a>
+              </div>
+              <div class="card-block">
+                <div class="card-title text-center">
+                  <p class="producto-title">{{$producto->titulo}}</p>
+                  <a class="btn btn-info">Agregar al carrito</a>
                 </div>
-                <div class="card-content">
-                    
-                    
-                </div>
-                <!--Buttons-->
-                <div class="card-btn text-center">
-                    <p>{{$producto->titulo}}</p>
-                </div>
-                <!--/.Buttons-->
+              </div>
             </div>
-            <!--Image Card-->
             @endforeach
         </div>
         
@@ -295,7 +311,7 @@ Contamos con una gran variedad de productos de las mejores marcas para sus neces
         </ul>
     </nav>
     <div id="projects" class="clearfix wow zoomInDown" data-wow-delay="0.9s" data-wow-duration="1s">
-      @foreach(categoria::all() as $categoria)
+      @foreach(categoria::where("active","=","1")->get() as $categoria)
       <figure class="mix portfolio-item paseos">
         {{HTML::Image('/packages/images/categorias/'.$categoria->imagen,'Imágen de categoría',array('class'=>'img-responsive view overlay hm-white-slight z-depth-1'))}}
             <a href="/packages/images/categorias/{{$categoria->imagen}}" title="{{$categoria->titulo}}" data-tool="tooltip"  rel="portfolio" class="fancybox"><span class="plus plus1 fa fa-search-plus"></a>
@@ -366,6 +382,6 @@ Contamos con una gran variedad de productos de las mejores marcas para sus neces
     {{HTML::script('/packages/js/libs/jquery/scrolling.js')}}
     {{HTML::script('/packages/js/prefiltros/inicio.js')}}
     <script type="text/javascript">
-
+      $("div.owl-dots").hide();
     </script>
 @stop

@@ -4,6 +4,11 @@ class loginController extends BaseController{
     public function inicio(){
         return View::make('inicio');
     }
+    public function isAdmin(){
+        if(Auth::check()){
+            return "success";
+        }else return "warning";
+    }
     public function login(){
         if(Request::method()=="GET"){
             return View::make('login');

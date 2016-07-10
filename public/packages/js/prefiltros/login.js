@@ -16,10 +16,12 @@ $(document).ready(function(){
 			if(r.message=="warning"){
 				$noty.show(r.message,"EL nombre de usuario,email y/o contraseña son incorrectos",true,false);
 			}else{
+				$(".fa-lock").addClass("fa-unlock");
+				$(".fa-lock").removeClass("fa-lock");
 				document.getElementById('frm-login').reset();
 				$noty.show(r.message,"session Iniciada correctamente, Bienvenido al sistema "+$("#username").val(),true,true);
 				setTimeout(function(){
-					document.location='/categorias';
+					document.location='/productos';
 				},1900);
 			}
 		}).fail();

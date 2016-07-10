@@ -7,7 +7,6 @@ $(document).ready(function() {
   var alturaUbicacion = $("#section-ubicacion").height();
   var alturaCategorias= $("#section-categoras").height();
   var alturaNow = 0;
-  console.log($("#section-inicio").height()+","+alturaAbout+","+alturaProductos+","+alturaUbicacion);
   var $cuerpo = $("html, body");
 
   $("#nav-inicio").click(function() {

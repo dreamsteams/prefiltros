@@ -18,6 +18,7 @@
     {{HTML::script('packages/js/libs/bootstrap/jquery.fancybox.pack.js')}}
     {{HTML::script('/packages/js/libs/notifier/Notifier.js')}}  
     {{HTML::style('/packages/css/libs/tooltipster/tooltipster.css')}}
+    {{HTML::style('/packages/css/libs/sweetalert/sweetalert.css')}}
   	{{HTML::style('/packages/css/libs/animate/pace.css')}}
     {{HTML::style('/packages/css/prefiltros/inicio.css')}}
     {{HTML::style('/packages/css/prefiltros/responsive.css')}}
@@ -35,7 +36,7 @@
 <body>
   <div class="container-fluid" style="padding-left:0!important;padding-right:0!important;">
     <!-- Zona para la barra de navefación de la pagina principal -->
-     <nav class="navbar navbar-fixed-top z-depth-2">
+     <nav class="navbar navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -44,7 +45,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><img src="/packages/images/prefiltros_icon.png" width="200" height="220" alt="" class="navbar-brand waves-effect waves-light img-responsive"></a>
+                    <a href="/"><img src="/packages/images/logo.png" width="200" height="220" alt="" class="navbar-brand waves-effect waves-light img-responsive"></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -107,14 +108,14 @@ MAQUINARIA-DIESEL/117117421719097" class="btn-floating btn-large fb-bg  waves-ef
                     </ul>-->
 	        </div>
 	    </div>
-        <div class="row zona-marcas">
+       <!--  <div class="row zona-marcas">
             <div class="col-lg-12">
                 <div class="footer-social wow fadeInUp">
                     <h3>Nuestras marcas:</h3>
                 </div>
             </div>
         </div>
-        <div class="row wow fadeInDown zona-marcas">
+       <div class="row wow fadeInDown zona-marcas">
             <div class="col-md-2"></div>
             <a  href="/packages/images/marcas/donaldson.png"     rel="marcas" class="col-md-1 fancybox" style=""><img src="/packages/images/marcas/donaldson.png"      class="img-responsive view overlay hm-white-slight z-depth-1" style="width:120px;height:60px;cursor:pointer;"></a>
             <a  href="/packages/images/marcas/fleetguard.png"    rel="marcas" class="col-md-1 fancybox" style=""><img src="/packages/images/marcas/Fleetguard.png"     class="img-responsive view overlay hm-white-slight z-depth-1" style="width:120px;height:60px;cursor:pointer;"></a>
@@ -125,7 +126,7 @@ MAQUINARIA-DIESEL/117117421719097" class="btn-floating btn-large fb-bg  waves-ef
             <a  href="/packages/images/marcas/TOPSPIN.png"       rel="marcas" class="col-md-1 fancybox" style=""><img src="/packages/images/marcas/TOPSPIN.png"        class="img-responsive view overlay hm-white-slight z-depth-1" style="width:120px;height:60px;cursor:pointer;"></a>
             <a  href="/packages/images/marcas/Wix.png"           rel="marcas" class="col-md-1 fancybox" style=""><img src="/packages/images/marcas/Wix.png"            class="img-responsive view overlay hm-white-slight z-depth-1" style="width:120px;height:60px;cursor:pointer;"></a>
             <div class="col-md-2"></div>
-        </div>
+        </div>-->
 	</div>
 	<div class="footer-copyright text-center rgba-black-light" style="margin-top:1%!important;">
         <div class="container-fluid" style="padding-bottom:1%!important;padding-top:1%!important;">
@@ -156,7 +157,11 @@ MAQUINARIA-DIESEL/117117421719097" class="btn-floating btn-large fb-bg  waves-ef
     {{HTML::script('/packages/js/libs/jquery/jquery.parallax-1.1.3.js')}}
     {{HTML::script('/packages/js/libs/jquery/jquery.appear.js')}}
     {{HTML::script('/packages/js/libs/notifier/Notifier.js')}}
+    {{HTML::script('/packages/js/libs/sweetalert/sweetalert.min.js')}}
     {{HTML::script('/packages/js/libs/tooltipster/jquery.tooltipster.min.js')}}
+    {{HTML::script('/packages/js/libs/validation/jquery.validate.min.js')}}
+    {{HTML::script('/packages/js/libs/validation/additional-methods.min.js')}}
+    {{HTML::script('/packages/js/libs/validation/localization/messages_es.js')}}
     {{HTML::script('/packages/js/libs/jquery/main.js')}}
    
     <!-- / Fin de la zona de archivos js -->

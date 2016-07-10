@@ -15,3 +15,9 @@
 	color: #fff;
 	font-weight: bold;
 }
+div[id*="page"]{
+	display: none;
+}
+div[id*="page"].active{
+	display: block;
+}
