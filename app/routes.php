@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/','loginController@inicio');
 Route::get('/logout','loginController@logout');
 Route::get("/productos",'productoController@show');

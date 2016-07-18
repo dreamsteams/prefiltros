@@ -51,7 +51,6 @@ $(function(){
 
     // portfolio filtering
 
-    $("#projects").mixItUp();
 
     //fancybox
 
@@ -88,18 +87,3 @@ $(function(){
         }
     });
 
-    $(".fancybox").fancybox({
-        padding: 0,
-
-        openEffect : 'elastic',
-        openSpeed  : 650,
-
-        closeEffect : 'elastic',
-        closeSpeed  : 550,
-    });
-    $(".colors").click(function(){
-        $(".colors").removeClass("active");
-        $(this).addClass("active");
-        $(this).parent().parent().parent().attr("data-color",$(this).data("color"));
-       
-    });

@@ -2,7 +2,8 @@
 class loginController extends BaseController{
     
     public function inicio(){
-        return View::make('inicio');
+        $productos = producto::join('categorias','categorias.id','=','productos.categoria_id')->where('categorias.active','=','1')->where('productos.active','=','1')->select('productos.id','productos.titulo','productos.descripcion','productos.imagen')->get();
+        return View::make('inicio')->with('productos',$productos);
     }
     public function isAdmin(){
         if(Auth::check()){

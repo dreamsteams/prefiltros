@@ -3,8 +3,7 @@
 @section('css')
 {{HTML::style('/packages/css/prefiltros/login.css')}}
 @stop
-@yield('title')Iniciar session@stop
-@section('container-main')
+@section('title')Iniciar session @stop
   @section('list')
      <li class="dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
@@ -12,8 +11,8 @@
             <li><a href="/productos">Catalogo de productos</a></li>
         </ul>
     </li>
-   <li id="nav-inicio"  class=""><a href="/" class=""><i class="fa fa-home"></i> Inicio</a></li>
   @stop
+@section('container-main')
 <section class="container-fluid" data-color="colors-blue" id="section-login">
 	<div class="row" style="">
 		<div class="col-md-4"></div>
