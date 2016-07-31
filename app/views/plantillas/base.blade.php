@@ -16,8 +16,9 @@
     {{HTML::script('/packages/js/libs/notifier/Notifier.js')}}  
     {{HTML::style('/packages/css/libs/tooltipster/tooltipster.css')}}
     {{HTML::style('/packages/css/libs/sweetalert/sweetalert.css')}}
+    {{HTML::style('/packages/css/prefiltros/base.css')}}
   	{{HTML::style('/packages/css/libs/animate/pace.css')}}
-        <!-- Diseño de iconos -->
+          <!-- Diseño de iconos -->
     {{-- {{HTML::style('/packages/css/libs/slide/demo.css')}}   --}}
 		<!-- Diseño de los colores -->
     {{-- {{HTML::style('/packages/css/libs/slide/style.css')}}  --}}
@@ -27,7 +28,6 @@
   	@yield('css')
   </style>
 </head>
-    @yield('js')
 <body>
   <!--Navbar-->
 <nav class="navbar navbar-fixed-top scrolling-navbar navbar-dark bg-primary">
@@ -42,13 +42,13 @@
         <!--Collapse content-->
         <div class="collapse navbar-toggleable-xs" id="collapseEx2">
             <!--Navbar Brand-->
-            <a class="navbar-brand" href="#"><i class="fa fa-gears"></i> Prefiltros</a>
+            <a class="navbar-brand" href="/"><i class="fa fa-gears"></i> Prefiltros</a>
             <!--Links-->
             <ul class="nav navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"><i class="fa fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
+                <li class="nav-item active" id="li-inicio">
+                    <a class="nav-link" href="/"><i class="fa fa-home"></i> Inicio <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="li-admin">
                     <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administracion</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         @if(!Auth::check())
@@ -59,10 +59,21 @@
                         @endif
                     </div>
                 </li>
+                <li class="nav-item dropdown" id="li-productos">
+                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" hidden href="#" id="li-product-news">Lo más nuevo</a>
+                        <a class="dropdown-item" href="/productos">Catalogo completo</a>
+                        <a class="dropdown-item" href="/categorias">Nuestra categorías</a>
+                    </div>
+                </li>
+                <li class="nav-item" id="li-carrito">
+                    <a class="nav-link" href="/carrito"><i class="fa fa-shopping-cart"></i> Mi carrito <span class="badge bg-green txt-carrito-count">0</span><span class="sr-only">(current)</span></a>
+                </li>
                 @yield('list')
             </ul>
             <!--Search form-->
-            <form class="form-inline">
+            <form class="form-inline" id="frm-buscar">
                 <input class="form-control" type="text" placeholder="Buscar">
             </form>
         </div>
@@ -72,6 +83,51 @@
 
 </nav>
  @yield('container-main')
+
+<!--Footer-->
+<footer class="page-footer center-on-small-only">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+ 
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+
+    <!--Call to action-->
+    <div class="call-to-action">
+        <ul>
+            <li><h5>Encuentranos también en redes sociales.</h5></li>
+        </ul>
+    </div>
+    <!--/.Call to action-->
+
+    <hr>
+
+    <!--Social buttons-->
+    <div class="social-section">
+        <ul>
+            <li><a href="http://www.facebook.com/pages/PREFILTROS-Y-ACCESORIOS-PARA-LA-ADMISION-PARA-<br />
+MAQUINARIA-DIESEL/117117421719097" target="_blank" class="btn-floating btn-small btn-fb"><i class="fa fa-facebook"> </i></a></li>
+            <li><a href="http://www.twitter.com/prefiltros" target="_blank" class="btn-floating btn-small btn-tw"><i class="fa fa-twitter"> </i></a></li>
+            <li><a href="http://www.youtube.com/user/PREFILTROS?feature=mhee" target="_blank" class="btn-floating btn-small btn-yt"><i class="fa fa-youtube"> </i></a></li>
+            <li><a class="btn-floating btn-small btn-ins"><i class="fa fa-instagram"> </i></a></li>
+        </ul>
+    </div>
+    <!--/.Social buttons-->
+
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            © {{date('Y')}} Copyright: <a href="http://www.prefiltros.com.mx"> Prefiltros </a>
+
+        </div>
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
 
 <audio class="hidden" id="noty-success" src="/packages/sounds/music.mp3"></audio>
 <audio class="hidden" id="noty-error" src="/packages/sounds/error.wav"></audio>
@@ -90,8 +146,13 @@
     {{HTML::script('/packages/js/libs/validation/additional-methods.min.js')}}
     {{HTML::script('/packages/js/libs/validation/localization/messages_es.js')}}
     {{HTML::script('/packages/js/libs/jquery/main.js')}}
+    {{HTML::script('/packages/js/prefiltros/main.js')}}
     <script type="text/javascript">
       new WOW().init();
+      $("#frm-buscar").submit(function(e){
+        e.preventDefault();
+        document.location="/productos/"+$("#frm-buscar>input").val();
+      });
     </script>
     @yield('js')
 <!--/.Navbar-->

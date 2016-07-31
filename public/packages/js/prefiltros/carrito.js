@@ -1,5 +1,7 @@
 $(document).ready(function(){
-   $("input[name='telefono']").mask('(000) 000-0000',{placeholder:"(999) 999-9999"});
+  $(".nav-item").removeClass("active");
+  $("#li-carrito").addClass("active");
+   $("input[name='telefono']").mask('(000) 000-0000',{placeholder:"Ingresa tu número telefonico"});
    $("#frm-cotizacion").validate({
       rules:{
         nombre:{required:true},
@@ -15,6 +17,9 @@ $(document).ready(function(){
     		"type":"POST"
     	}).done(function(r){
    			$(".txt-carrito-count").text(r);
+        if(r==0){
+          $("#btn-send-cotiza").prop("disabled",true);
+        }
     	}).fail(function(e){
     		console.error(e);
     	});
@@ -87,6 +92,9 @@ $(document).ready(function(){
     				getCantidadProductos();
     				$noty.show("info",'El carrito se ha vaciado exitosamente!',true,true);
             $("#content-products").empty();
+            if(!$(".box-product").length){
+              $(".row-void").removeAttr("hidden");
+            }
     	    	});
          });
     });
@@ -159,6 +167,9 @@ $(document).ready(function(){
     		    		getCantidadProductos();
     		    		$noty.show("info",'El producto "'+r[0].titulo+'" se ha quitado exitosamente!',true,true);
     		    		reordenarProductos($btn.parent().parent().parent().parent().parent());
+                if(!$(".box-product").length){
+                  $(".row-void").removeAttr("hidden");
+                }
     	    		}
     	    	});
          });

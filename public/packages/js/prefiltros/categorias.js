@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	// all code here
+  $(".nav-item").removeClass("active");
+  $("#li-productos").addClass("active");
   var required=true;
   var admin = false;
   $(".title_left").on("isAdmin",function(){
@@ -122,17 +124,12 @@ $(document).ready(function(){
     }
   }
 	$(".card-new").click(function(){
-		$("#categorias").hide("slow");
-		$("#admin-categorias").show("slow");
-    $(".row-pager").hide();
     $("input[name='id']").val(0);
     required=true;
+    $("#save-categoria").html("<i class='fa fa-check'></i> Guardar");
 	});
 
 	$("#cancel-categoria").click(function(){
-		$("#categorias").show("slow");
-		$("#admin-categorias").hide("slow");
-    $(".row-pager").show();
 		document.getElementById('frm-categorias').reset();
 		$(".btn-remove-image").trigger("click");
 	});
@@ -344,9 +341,6 @@ $(document).ready(function(){
           required=false;
           var titulo   = $(this).parent().parent().parent().parent().parent().parent().data("titulo");
           $("input[name='nombre']").val(titulo);
-          $("#categorias").hide("slow");
-          $("#admin-categorias").show("slow");
-          $(".row-pager").hide();
           $("input[name='id']").val($(this).data("id"));
           $("#save-categoria").html("<i class='fa fa-refresh'></i> Modificar");
       });

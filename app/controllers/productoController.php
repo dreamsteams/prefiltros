@@ -9,12 +9,12 @@ class productoController extends BaseController{
 		}
 	}
 	public function search($busqueda){
-		$resultados = producto::where("titulo","like","%$busqueda%")->where("active",1)->get();
+		$resultados = producto::join('categorias','categorias.id','=','productos.categoria_id')->join('marcas','marcas.id','=','productos.marca_id')->where("productos.titulo","like","%$busqueda%")->where("productos.active",1)->select("productos.id","productos.titulo","productos.descripcion","productos.imagen","productos.categoria_id","productos.marca_id","marcas.nombre as nombreMarca","marcas.imagen as imgMarca")->get();
 		return View::make("producto_find")->with("resultados",$resultados);
 	}
 	public function findById($id){
 		if($id){
-			$resultados = producto::where("categoria_id",$id)->where("active",1)->get();//join("categorias","categorias.id","=","productos.categoria_id")->where("productos.categoria_id",$id)->where("productos.active",1)->where("categorias.id",1)->get();
+			$resultados = producto::join('categorias','categorias.id','=','productos.categoria_id')->join('marcas','marcas.id','=','productos.marca_id')->where("categoria_id",$id)->where("productos.active",1)->select("productos.id","productos.titulo","productos.descripcion","productos.imagen","productos.categoria_id","productos.marca_id","marcas.nombre as nombreMarca","marcas.imagen as imgMarca")->get();//join("categorias","categorias.id","=","productos.categoria_id")->where("productos.categoria_id",$id)->where("productos.active",1)->where("categorias.id",1)->get();
 			return View::make("producto_find")->with("resultados",$resultados);
 		}
 	}
@@ -60,6 +60,7 @@ class productoController extends BaseController{
 						$producto->titulo = Input::get("titulo");
 						$producto->descripcion = Input::get("descripcion");
 						$producto->categoria_id=Input::get("categoria");
+						$producto->marca_id = Input::get("marca_id");
 						$producto->save();	
 						return array(0=>$producto);
 					}else{
@@ -72,6 +73,7 @@ class productoController extends BaseController{
 							$nombre_image = str_replace(" ","", $nombre_image);
 							$producto->imagen = $nombre_image;
 							$producto->categoria_id=Input::get("categoria");
+							$producto->marca_id=Input::get("marca_id");
 							$producto->active=1;
 							$file->move(public_path()."/packages/images/productos/",$nombre_image);
 							$producto->save();
@@ -306,6 +308,41 @@ class productoController extends BaseController{
 						return "".$e->getCode();
 					}
 				}
+			}
+		}
+	}
+	public function sendRequest(){
+		if(Request::ajax()){
+			$rules = [
+				"email" 		=>		"required|email",
+				"asunto"		=>		"required",
+				"comentarios"	=>		"required"
+			];
+			$messages = [
+				"required"		=>		"El campo :attribute es requerido!",
+				"email"			=>		"El campo :attribute tiene que ser un email valido!"
+			];
+			$validador = Validator::make(Input::all(),$rules,$messages);
+			if($validador->fails()){
+				return $validador->messages();
+			}else{
+				$dataSend=[
+						"email"				=>	Input::get("email"),
+						"asunto"			=>	Input::get("asunto"),
+						"mensage"			=>  Input::get("comentarios"),
+					];
+					//return $dataSend["productos"];
+					$toMail   = "roger_17@live.com";
+					$fromMail = $dataSend["email"];
+					$subject  = $dataSend["asunto"];
+					try {
+						$mail = Mail::later(5,"emails.request",$dataSend,function($message) use($toMail,$fromMail,$subject){
+							$message->to($toMail,$fromMail)->subject($subject);
+						});
+						return array(0=>"success");
+					} catch (Exception $e) {
+						return "".$e->getCode();
+					}
 			}
 		}
 	}

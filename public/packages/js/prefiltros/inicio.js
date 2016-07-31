@@ -20,40 +20,49 @@ $(document).ready(function(){
             }},
         }
    });
-    $('.owl-carousel').owlCarousel({
-        items:4,
-        loop:true,
-        margin:10,
-        autoWidth:true,
-        autoplay:true,
-        autoplayTimeout:500,
-        autoplayHoverPause:true,
-        autoHeight:true,
-        responsive:{
-            0:{
-                items:1
-            },
-            600:{
-                items:3
-            },
-            1000:{
-                items:6
-            }
+   $("#frmContacto").validate({
+        rules:{
+            "email":{required:true,email:true},
+            "asunto":{required:true},
+            "comentarios":{required:true}
         }
-    });
-     $('.owl-carousel').trigger('autoplay.play.owl',[1000]);
-    $('.play').on('click',function(){
-        $('.owl-carousel').trigger('autoplay.play.owl',[1000]);
-    });
-    $('.stop').on('click',function(){
-        owl.trigger('autoplay.stop.owl')
-    });
-    $("#section-productos>.row>.col-md-2>i.fa.fa-arrow-left").click(function(){
-        $("#section-productos>.row>.col-md-12>.owl-carousel>.owl-nav>.owl-prev").trigger("click");
-    });
-    $("#section-productos>.row>.col-md-2>i.fa.fa-arrow-right").click(function(){
-        $("#section-productos>.row>.col-md-12>.owl-carousel>.owl-nav>.owl-next").trigger("click");
-    });
+   });
+   $("#contacto").click(function(){
+        if($("#frmContacto").valid()){
+            var text = $("#contacto").text();
+            $("#contacto").text("Enviando...");
+            $("#contacto").prop("disabled",true);
+            $.ajax({
+                "url":$("#frmContacto").attr("action"),
+                "type":"POST",
+                "data":$("#frmContacto").serialize()
+            }).done(function(r){
+                console.log(r);
+                if($.isPlainObject(r)){
+                    $.each(r,function(c,o){
+                        $noty.show("warning",o,true,false);
+                    });
+                }else{
+                    if(r==0){
+                         swal({
+                          title: "Notificación de prefiltros.",
+                          text: "No se ha enviado el correo por que se pudo establecer la conexión con el servidor de correo, verifique su conexión a interntet si este problema continua pongase en contacto con el administrador de la pagina",
+                          type: "info"
+                          });
+                        //$noty.show("info","",true,false);
+                    }else{
+                        $noty.show("success","EL envió de tus dudas, comentarios y/o sugerencias se ha enviado exitosamente.",true,true);
+                        document.getElementById('frmContacto').reset();
+                    }
+                }
+            }).fail(function(e){
+
+            }).always(function(){
+                $("#contacto").text(text);
+                $("#contacto").prop("disabled",false);
+            });
+        }
+   });
     $("*[data-tool='tooltip']").tooltipster({
         animation:'swing',
         position:'bottom'
@@ -83,12 +92,12 @@ $(document).ready(function(){
     $(".btn-refresh").click(function(e){
         $("#btn-save-seccion").text("MODIFICAR SECCIÓN");
         $("#modal-carousel .modal-title").html('<i class="fa fa-gear"></i> Modificar sección');
-        id = $(".carousel-inner .item.active").data("id");
+        id = $(".carousel-inner .carousel-item.active").data("id");
         $("#btn-save-seccion").prop("disabled",true);
         $("input[name='id']").val(id);
         required=false;
-        titulo = $(".carousel-inner .item.active>.carousel-caption h2").text();
-        descripcion = $(".carousel-inner .item.active>.carousel-caption p").text();
+        titulo = $(".carousel-inner .carousel-item.active>.carousel-caption h3").text();
+        descripcion = $(".carousel-inner .carousel-item.active>.carousel-caption p").text();
         $("input[name='titulo']").val(titulo);
         $("textarea[name='descripcion']").val(descripcion);
         setTimeout(function(){
@@ -111,7 +120,7 @@ $(document).ready(function(){
         }
     });
     $(".btn-delete").click(function(){
-        id = $(".carousel-inner .item.active").data("id");
+        id = $(".carousel-inner .carousel-item.active").data("id");
         $("input[name='id']").val(id);
          swal({
           title: "¿Seguro de eliminar esta sección?",
@@ -183,9 +192,9 @@ $(document).ready(function(){
                 }else{
                     if(upadate){
                          $noty.show("success","La sección del carousel se ha actualizado exitosamente.",true,true);
-                          $(".carousel-inner .item[data-id='"+id+"']").css("background-image","url(/packages/images/secciones/"+r[0].imagen+")");
-                          $(".carousel-inner .item[data-id='"+id+"'] h2.text-center").text(r[0].titulo);
-                          $(".carousel-inner .item[data-id='"+id+"'] p").text(r[0].descripcion);
+                          $(".carousel-inner .carousel-item[data-id='"+id+"'] img").attr("src","/packages/images/secciones/"+r[0].imagen);
+                          $(".carousel-inner .carousel-item[data-id='"+id+"'] h3").text(r[0].titulo);
+                          $(".carousel-inner .carousel-item[data-id='"+id+"'] p").text(r[0].descripcion);
                          $("#btn-cancel").trigger("click");
                     }else{
                         $noty.show("success","La sección del carousel se ha agregado exitosamente.",true,true);

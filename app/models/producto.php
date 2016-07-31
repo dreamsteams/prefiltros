@@ -4,4 +4,7 @@ class producto extends Eloquent{
 	public function categoria(){
 		return $this->belongsTo("categoria");
 	}
+	public function marca(){
+		return $this->belongsTo("marca");
+	}
 }

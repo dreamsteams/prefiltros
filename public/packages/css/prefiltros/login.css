@@ -3,15 +3,11 @@
     padding-top: 10%!important;
 }
 .panel{
-	background: rgba(231, 239, 239, 0.68);
+	background: rgba(231, 239, 239, 0.78);
+    padding: 4%;
 }
-.navbar{
-    background: rgb(63, 114, 155)!important;
-}
-.material-icons>i.fa{
 
 
-}
 .material-icons{
     font-size: 2em;
 }
@@ -155,8 +151,41 @@ label {
 [type=checkbox].filled-in+label:after {
     border-radius: 2px;
 }
-:after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+
+[data-color="colors-blue"]{
+     background-image: url(/packages/images/user/bg-login1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    transition: 1s;
+}
+[data-color="colors-gray"]{
+    background-image: url(/packages/images/user/bg-login2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    transition: 1s;
+}
+[data-color="colors-brown"]{
+    background-image: url(/packages/images/user/bg-login3.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    transition: 1s;
+}
+[data-color="colors-green"]{
+    background-image: url(/packages/images/user/bg-login4.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    transition: 1s;
+}
+.colors{
+    border-radius: 1%;
+    min-width: 70px;
+    max-width: 70px;
+    min-height: 70px;
+    max-height: 70px;
+    margin-left: .6px;
+    cursor: pointer;
+    display: inline-block;
+}
+.colors.active{
+    border:4px solid #fff;
 }

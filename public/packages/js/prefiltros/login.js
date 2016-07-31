@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	$("body").attr("data-color","colors-blue");
 	$("#frm-login").submit(function(e){
 		e.preventDefault();
 		$.ajax({
@@ -25,5 +25,10 @@ $(document).ready(function(){
 				},1900);
 			}
 		}).fail();
+	});
+	$(".colors").click(function(){
+		$(".colors").removeClass("active");
+		$(this).addClass("active");
+		$("body").attr("data-color",$(this).attr("data-color"));
 	});
 });

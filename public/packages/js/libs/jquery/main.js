@@ -79,9 +79,7 @@ $(function(){
         if ($(window).scrollTop() > 30) {// Aquí es cuando se scrolleo hacia bajo y es donde le daras un estilo visible a la barra o como tu gustes
   //          $(".navbar").css("unique-color");/*00C7FC*/
             $(".navbar").addClass("animated-nav");
-            $(".dropdown-menu").removeClass("custom-nav");
         } else {
-            $(".dropdown-menu").addClass("custom-nav");// Aquí se supone que la barra debería ser transparente.
     //        $(".navbar").css("background","rgba(63, 114, 155, 0.38)!important");
             $(".navbar").removeClass("animated-nav");
         }

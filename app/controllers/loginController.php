@@ -2,7 +2,7 @@
 class loginController extends BaseController{
     
     public function inicio(){
-        $productos = producto::join('categorias','categorias.id','=','productos.categoria_id')->where('categorias.active','=','1')->where('productos.active','=','1')->select('productos.id','productos.titulo','productos.descripcion','productos.imagen')->get();
+        $productos = DB::select("select p.id,p.titulo,p.descripcion,p.imagen from productos p join categorias c on p.categoria_id = c.id where c.active = 1 and p.active = 1 limit 20;");
         return View::make('inicio')->with('productos',$productos);
     }
     public function isAdmin(){

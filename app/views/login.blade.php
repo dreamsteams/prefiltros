@@ -5,15 +5,15 @@
 @stop
 @section('title')Iniciar session @stop
   @section('list')
-     <li class="dropdown">
+    <!-- <li class="dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
         <ul class="dropdown-menu custom-nav" role="menu">
             <li><a href="/productos">Catalogo de productos</a></li>
         </ul>
-    </li>
+    </li>-->
   @stop
 @section('container-main')
-<section class="container-fluid" data-color="colors-blue" id="section-login">
+<section class="container-fluid"  style="" id="section-login">
 	<div class="row" style="">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-4"></div>
 						<div class="col-md-4">
-							<img src="/packages/images/user/default_user.jpg"  class="img-responsive img-circle">
+							<img src="/packages/images/user/default_user.jpg"  class="img-responsive img-fluid img-circle">
 						</div>
 						<div class="col-md-4"></div>
 					</div>
@@ -83,9 +83,5 @@
 
 @section('js')
 {{HTML::script('/packages/js/prefiltros/login.js')}}
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".zona-marcas").hide();
-	});
-</script>
+
 @stop

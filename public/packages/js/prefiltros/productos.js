@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	$(".nav-item").removeClass("active");
+	$("#li-productos").addClass("active");
 	getCantidadProductos();
 	var required = true;
 	var admin = false;
@@ -126,22 +128,19 @@ $(document).ready(function(){
 		}
 	});
 	$(".card-new").click(function(){
-		$("#productos").hide("slow");
-		$("#admin-productos").show("slow");
-		$(".row-pager").hide();
 		required=true;
 		$("input[name='id']").val(0);
 		$("#save-product").html("<i class='fa fa-check'></i> Guardar");
 	});
 	$("#cancel-product").click(function(){
-		$("#productos").show("slow");
-		$("#admin-productos").hide("slow");
 		$(".row-pager").show();
+		document.getElementById('frm-productos').reset();
 	});
 	function 
 	uploadProducto(update){
 		formData = new FormData(document.getElementById('frm-productos'));
 			formData.append("categoria",$("#categorias").val());
+			formData.append("marca_id",$("#marcas").val());
 			$btn = $("#save-product");
 			$btn.prop("disabled",true);
 			text = $btn.html();
@@ -171,7 +170,6 @@ $(document).ready(function(){
 						$card.find(".card-title>p").text(r[0].titulo);
 						$card.find("img").attr("src","/packages/images/productos/"+r[0].imagen);
 						$card.find(".btn-refresh").data("categoria",r[0].categoria_id);
-						console.log($card);
 					}else{
 						$noty.show("success","El producto se ha agregado exitosamente",true,true);
 						if($(".row-main-product").last().children().length==6){
@@ -278,10 +276,22 @@ $(document).ready(function(){
     	$("#changeImage").data("id",$(this).data("id"));
     	$("#changeImage").trigger("click");
     });
-    $("#content-products").on("click",".btn-carrito-add",function(){
-   		var datos = { 
-   			id :$(this).data("id"),
-   			cantidad:1
+    $(".btn-n-products").on("click",function(){
+    	var $input;
+    	if($(this).hasClass("btn-left")){
+    		$input = $(this).next();
+    		if($input.val()>1){
+	    		$input.val(parseInt($input.val())-1);
+    		}
+    	}else{
+    		$input = $(this).prev();
+    		$input.val(parseInt($input.val())+1);
+    	}
+    });
+   function addCarrito(id,cantidad){
+    	var datos = { 
+   			id :id,
+   			cantidad:cantidad
    		}
 
    		$.ajax({
@@ -303,6 +313,9 @@ $(document).ready(function(){
    		}).always(function(r){
 
    		}); 	
+    }
+    $("#content-products").on("click",".btn-carrito-add",function(){
+   		addCarrito($(this).data("id"),1);
     });
     function getCantidadProductos(){
     	$.ajax({
@@ -321,21 +334,25 @@ $(document).ready(function(){
     	var descripcion = $(this).parent().parent().parent().parent().parent().parent().data("descripcion");
     	$("input[name='titulo']").val(titulo);
     	$("textarea[name='descripcion']").val(descripcion);
-    	$("#productos").hide("slow");
-		$("#admin-productos").show("slow");
-		$(".row-pager").hide();
 		$("select[name='categorias']").children().removeAttr("selected");
 		$("select[name='categorias']").children("option[value='"+$(this).data("categoria")+"']").prop("selected",true);
+		$("select[name='marcas']").children().removeAttr("selected");
+		$("select[name='marcas']").children("option[value='"+$(this).data("marca")+"']").prop("selected",true);
 		$("input[name='id']").val($(this).data("id"));
 		$("#save-product").html("<i class='fa fa-refresh'></i> Modificar");
     });
     $("#content-products").on("click",".btn-search",function(){
     	var src = $(this).parent().parent().parent().parent().parent().find("img").attr("src");
     	var title =  $(this).parent().parent().parent().parent().parent().parent().data("titulo");
+    	var src_marca ="/packages/images/marcas/"+ $(this).parent().parent().parent().parent().parent().parent().data("imagen");
+    	var name_marca = $(this).parent().parent().parent().parent().parent().parent().data("marca");
     	var description = $(this).parent().parent().parent().parent().parent().parent().data("descripcion");
-    	$("#modal-detalles").find("img").attr("src",src);
+    	$("#modal-detalles").find(".img-producto-detalle").attr("src",src);
     	$("#modal-detalles").find(".title-detalle").text(title);
     	$("#modal-detalles").find(".description-detalle").text(description);
+    	$("#modal-detalles").find(".img-marca").attr("src",src_marca);
+    	$("#modal-detalles").find(".nombre-marca").text("Marca: "+name_marca);
+    	$("#btn-save-carrito").data("id",$(this).data("id"));
 
     });
     $("#content-products").on("click",".btn-trash",function(){
@@ -399,4 +416,10 @@ $(document).ready(function(){
 			    }
 			});
 		}
+	$("#btn-save-carrito").click(function(){
+		var cantidad = document.getElementById('cantidad').value;
+		var id = $(this).data("id");
+		addCarrito(id,cantidad);
+		$("#btn-cancel-carrito").trigger("click");
+	});
 });

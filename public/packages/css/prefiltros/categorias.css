@@ -1,9 +1,9 @@
 .card-new{
-	height: 182px;
+	height: 209px;
 	padding: 10%;
 	border-radius: 10px;
 	cursor: pointer;
-	background: rgba(0,0,1,.3);
+	background: rgba(0,0,1,.2);
 }
 .card-new>h1{
   color: #fff;
